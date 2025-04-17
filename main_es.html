@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SINPE PAYMENT</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
+
+  <!-- LANGUAGE NAV -->
+  <nav class="w-full p-4 bg-white shadow flex items-center justify-between">
+    <!-- Ícono + Texto a la izquierda -->
+    <div class="flex items-center gap-2">
+      <img src="assets/images/logo_icon.png" alt="Logo" class="h-8 w-8"/>
+      <span class="text-lg font-bold text-blue-600">SINPE App</span>
+    </div>
+    <ul class="flex gap-2">
+      <li>
+        <a href="main_es.html" class="px-4 py-1 rounded-full bg-blue-500 text-white font-bold shadow-md">
+          Spanish
+        </a>
+      </li>
+      <li>
+        <a href="main_en.html" class="px-4 py-1 rounded-full border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white transition duration-200">
+          English
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="bg-white p-6 rounded-2xl shadow-lg w-full max-w-sm mt-10">
+    <h2 class="text-2xl font-bold mb-4 text-center text-gray-800">Payment by SINPE Mobile</h2>
+
+    <label for="bank" class="block mb-2 text-sm font-medium text-gray-700">Select your bank</label>
+    <select id="bank" class="w-full p-2 mb-4 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400">
+        <option value="2627">BN (Banco Nacional)</option>
+        <option value="4066">BCR (Banco de Costa Rica)</option>
+        <option value="707001222">BAC</option>
+        <option value="60575079">Mutual Alajuela</option>
+        <option value="62229525">MUCAP</option>
+    </select>
+
+    <label class="block mb-2 text-sm font-medium text-gray-700">SINPE Number</label>
+    <input type="tel" id="phone_number" maxlength="9" placeholder="8888-8888" class="w-full p-2 mb-4 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"/>
+
+    <label class="block mb-2 text-sm font-medium text-gray-700">Amount</label>
+    <input type="number" id="amount" placeholder="₡5000" class="w-full p-2 mb-4 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"/>
+
+    <label class="block mb-2 text-sm font-medium text-gray-700">Payment details</label>
+    <input type="text" id="details" placeholder="Dinner/Lunch/Pizza/Payment" class="w-full p-2 mb-6 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"/>
+
+    <button onclick="createSMS()" class="w-full bg-blue-500 text-white py-2 rounded-xl font-semibold hover:bg-blue-600 transition duration-200">
+      Send SMS
+    </button>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="mt-8 text-gray-600 text-sm text-center">
+    <p>&copy; <span id="year"></span> ZharkaZ</p>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="assets/scripts/scripts.js" defer></script>
+
+</body>
+</html>
