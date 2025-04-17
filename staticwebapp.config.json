@@ -1,0 +1,6 @@
+{
+    "navigationFallback": {
+      "rewrite": "/main_es.html"
+    }
+  }
+  
