@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PAGO SINPE</title>
+  <title>SINPEQR</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -13,7 +13,7 @@
   <nav class="w-full p-4 bg-white shadow flex items-center justify-between">
     <!-- Ícono + Texto a la izquierda -->
     <div class="flex items-center gap-2">
-      <img src="assets/images/logo_icon.png" alt="Logo" class="h-8 w-8"/>
+      <img src="assets/images/Logo(blue).svg" alt="Logo" class="h-8 w-8"/>
       <span class="text-lg font-bold text-blue-600">SINPE App</span>
     </div>
     <ul class="flex gap-2">
@@ -44,6 +44,7 @@
         <option value="2627">Coopenae</option>
         <option value="62229525">Mucap</option>
         <option value="70701222">Davivienda</option>
+        <option value="62232450">Promerica</option>
     </select>
 
     <label class="block mb-2 text-sm font-medium text-gray-700">Numero SINPE</label>
@@ -55,7 +56,7 @@
     <label class="block mb-2 text-sm font-medium text-gray-700">Detalles de pago</label>
     <input type="text" id="details" placeholder="Cena/Almuerzo/Pizza/Pago" class="w-full p-2 mb-6 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"/>
 
-    <button onclick="createSMS()" class="w-full bg-blue-500 text-white py-2 rounded-xl font-semibold hover:bg-blue-600 transition duration-200">
+    <button onclick="sendSMS()" class="w-full bg-blue-500 text-white py-2 rounded-xl font-semibold hover:bg-blue-600 transition duration-200">
       Enviar SMS
     </button>
   </main>
@@ -66,7 +67,7 @@
   </footer>
 
   <!-- SCRIPTS -->
-  <script src="assets/scripts/scripts.min.js" defer></script>
+  <script src="assets/scripts/scripts.js" defer></script>
 
 </body>
 </html>
