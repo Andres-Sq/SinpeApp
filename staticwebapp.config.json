@@ -13,6 +13,9 @@
     },
     {
       "route": "/assets/images"
+    },
+    {
+      "route": "/assets/*"
     }
   ]
 }
