@@ -12,7 +12,7 @@
       "route": "/customers/*"
     },
     {
-      "route": "assets/images"
+      "route": "/assets/images"
     }
   ]
 }
