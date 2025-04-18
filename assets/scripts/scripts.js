@@ -40,7 +40,7 @@ function createSMS() {
 document.addEventListener("DOMContentLoaded", () => {
 document.getElementById("year").textContent = new Date().getFullYear()});
 
-//Disable right click and F12
+//Disable
 document.addEventListener("contextmenu", function (e) {
   e.preventDefault();
 });
