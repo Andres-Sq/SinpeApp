@@ -1,10 +1,10 @@
 const numeroInput = document.getElementById('phone_number');
 
   numeroInput.addEventListener('input', function (e) {
-    // Remover cualquier carácter que no sea número
+    // Remove characters that are not digits
     let valor = e.target.value.replace(/\D/g, '');
 
-    // Formatear como 8888-8888
+    // Format como 8888-8888
     if (valor.length > 4) {
       valor = valor.slice(0, 4) + '-' + valor.slice(4, 8);
     }
@@ -39,3 +39,14 @@ function createSMS() {
 //Footer date dinamic  
 document.addEventListener("DOMContentLoaded", () => {
 document.getElementById("year").textContent = new Date().getFullYear()});
+
+//Disable right click and F12
+document.addEventListener("contextmenu", function (e) {
+  e.preventDefault();
+});
+document.addEventListener("keydown", function (e) {
+  if (e.key === "F12") e.preventDefault();
+  if (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J")) e.preventDefault();
+  if (e.ctrlKey && e.key === "u") e.preventDefault();
+  if (e.ctrlKey && e.key === "s") e.preventDefault();
+});
