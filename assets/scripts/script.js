@@ -1,4 +1,3 @@
-const token = process.env.TOKEN;
 const numeroInput=document.getElementById("phone_number");
 numeroInput.addEventListener("input",(function(e){let valor=e.target.value.replace(/\D/g,"");
 if(valor.length>4){valor=valor.slice(0,4)+"-"+valor.slice(4,8)}e.target.value=valor}));
@@ -27,7 +26,7 @@ function sendSMS() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
+        "Authorization": `Bearer andres`
       },
       body: JSON.stringify(datos)
     })
