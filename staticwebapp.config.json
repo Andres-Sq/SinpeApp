@@ -15,6 +15,7 @@
     },
     {
       "route": "/assets/images",
+      "rewrite": "/assets/images/401.html",
       "statusCode": 401
     },
     {
