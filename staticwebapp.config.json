@@ -9,9 +9,7 @@
   },
   "routes": [
     {
-      "route": "/customers",
-      "rewrite": "/customers/401.html",
-      "statusCode": 401
+      "route": "/customers"
     },
     {
       "route": "/assets/images",
