@@ -1,14 +1,11 @@
 const numeroInput = document.getElementById('phone_number');
-
 numeroInput.addEventListener('input', function (e) {
   let valor = e.target.value.replace(/\D/g, '');
-
   if (valor.length > 4) {
-    valor = valor.slice(0, 4) + '-' + valor.slice(4, 8);
+  valor = valor.slice(0, 4) + '-' + valor.slice(4, 8);
   }
-
-    e.target.value = valor;
-  });
+  e.target.value = valor;
+});
 
 function createSMS() {
   const isEnglish = window.location.pathname.includes("main_en");
@@ -22,22 +19,23 @@ function createSMS() {
      alertMsg = isEnglish
     ? "Please complete all fields."
     : "Por favor completa todos los campos.";
-   alert(alertMsg);
+    alert(alertMsg);
   return;
   }
-
-    const mensaje = `Pase ${amount} ${phone_number} ${details}`;
-    const link = `sms:${bank}?&body=${encodeURIComponent(mensaje)}`;
-  
-    window.location.href = link;
+  const mensaje = `Pase ${amount} ${phone_number} ${details}`;
+  const link = `sms:${bank}?&body=${encodeURIComponent(mensaje)}`;
+  //window.location.href = link;
+  console.log(link);
+  const alertMsg = isEnglish ? "Message generated successfully." : "Mensaje generado con éxito.";
+  alert(alertMsg);
+  window.location.href = ".../../checkpages/success.html";
   }
- 
+
 document.addEventListener("DOMContentLoaded", () => {
 document.getElementById("year").textContent = new Date().getFullYear()});
 
-//Disable
 document.addEventListener("contextmenu", function (e) {
-  e.preventDefault();
+e.preventDefault();
 });
 document.addEventListener("keydown", function (e) {
   if (e.key === "F12") e.preventDefault();
