@@ -9,7 +9,8 @@
   },
   "routes": [
     {
-      "route": "/customers"
+      "route": "/customers",
+      "statusCode": 401
     },
     {
       "route": "/assets/images"
