@@ -9,7 +9,7 @@
   },
   "routes": [
     {
-      "route": "/customers/*"
+      "route": "/customers"
     },
     {
       "route": "/assets/images"
