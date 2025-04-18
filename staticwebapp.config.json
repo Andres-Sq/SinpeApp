@@ -6,5 +6,10 @@
     "401": {
       "rewrite": "/assets/scripts/401.html"
     }
-  }
+  },
+  "routes": [
+    {
+      "route": "\\customers"
+    }
+  ]
 }
