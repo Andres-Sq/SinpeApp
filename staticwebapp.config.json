@@ -1,16 +1,10 @@
 {
-    "navigationFallback": {
-      "rewrite": "/index.html"
-    },
-    "responseOverrides": {
+  "navigationFallback": {
+    "rewrite": "/index.html"
+  },
+  "responseOverrides": {
     "401": {
       "rewrite": "/assets/scripts/401.html"
     }
-  },
-  "routes": [
-    {
-      "route": "/assets/*",
-      "statusCode": 401
-    }
-  ]
   }
+}
