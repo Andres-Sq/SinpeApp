@@ -22,7 +22,7 @@ function sendSMS() {
         details
     };
   
-    fetch("http://localhost:3000/api/sms/create-sms", {
+    fetch("sinpe-api-cwgbcxdbekeae2cv.canadacentral-01.azurewebsites.net", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
