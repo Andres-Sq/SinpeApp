@@ -25,7 +25,8 @@ function sendSMS() {
     fetch("sinpe-api-cwgbcxdbekeae2cv.canadacentral-01.azurewebsites.net", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify(datos)
     })
