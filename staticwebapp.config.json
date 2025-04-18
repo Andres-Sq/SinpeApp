@@ -6,14 +6,5 @@
     "401": {
       "rewrite": "/assets/scripts/401.html"
     }
-  },
-  "routes": [
-    {
-      "route": "/assets/images",
-      "statusCode": 401
-    },
-    {
-      "route": "/assets/*"
-    }
-  ]
+  }
 }
