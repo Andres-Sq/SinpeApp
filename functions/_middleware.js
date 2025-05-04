@@ -5,7 +5,7 @@ export const onRequest = async ({ request, next }) => {
   const isStatic = url.pathname.startsWith("/assets/") || url.pathname.endsWith("/favicon.ico");
 
   // Excluir success.html de la verificación, pero solo si el usuario tiene sesión activa
-  const isSuccessPage = url.pathname.endsWith("/success.html");
+  const isSuccessPage = url.pathname.endsWith("/checkpages/success.html");
 
   if (isStatic) {
     return next(); // permitir acceso sin client
