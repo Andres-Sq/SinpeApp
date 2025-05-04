@@ -1,13 +1,20 @@
-// --- Año en el footer ---
 document.addEventListener("DOMContentLoaded", () => {
+  setYearInFooter();
+  formatPhoneInput();
+  validateAndLoadClient();
+  updateLanguageLinks();
+});
+
+// --- Función para mostrar el año actual en el footer ---
+function setYearInFooter() {
   const yearSpan = document.getElementById("year");
   if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
   }
-});
+}
 
-// --- Validación y formato de número SINPE ---
-window.addEventListener("DOMContentLoaded", () => {
+// --- Formateo en vivo del número SINPE ---
+function formatPhoneInput() {
   const numeroInput = document.getElementById("phone_number");
 
   if (numeroInput) {
@@ -19,7 +26,10 @@ window.addEventListener("DOMContentLoaded", () => {
       e.target.value = valor;
     });
   }
+}
 
+// --- Verificar 'client' y cargar configuración del API ---
+function validateAndLoadClient() {
   const urlParams = new URLSearchParams(window.location.search);
   const client = urlParams.get("client");
 
@@ -35,14 +45,29 @@ window.addEventListener("DOMContentLoaded", () => {
       return res.json();
     })
     .then((data) => {
-      document.getElementById("phone_number").value = data.phone;
+      const phoneInput = document.getElementById("phone_number");
+      if (phoneInput) phoneInput.value = data.phone;
     })
     .catch((err) => {
       console.error("Error al obtener configuración:", err);
       alert("No se pudo cargar la configuración del cliente.");
       window.location.href = "/checkpages/error.html";
     });
-});
+}
+
+// --- Actualizar enlaces de idioma con ?client ---
+function updateLanguageLinks() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const client = urlParams.get("client");
+
+  if (client) {
+    const langLinks = document.querySelectorAll('#lang-en, #lang-es');
+    langLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      link.setAttribute('href', href + (href.includes('?') ? '&' : '?') + 'client=' + client);
+    });
+  }
+}
 
 // --- Función para enviar el SMS ---
 function sendSMS() {
@@ -79,10 +104,10 @@ function sendSMS() {
     .then((data) => {
       const smsMessage = data.message;
       const smsUrl = `sms:${bank}?&body=${encodeURIComponent(smsMessage)}`;
-  
+
       const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
       const isAndroid = /Android/i.test(navigator.userAgent);
-  
+
       const alertMsg = isEnglish
         ? "Message generated successfully. You will now be redirected to your SMS app."
         : "Mensaje generado con éxito. Ahora serás redirigido a tu app de mensajes.";
@@ -97,7 +122,7 @@ function sendSMS() {
       // Limpiar las casillas de texto después de enviar
       document.getElementById("amount").value = "";
       document.getElementById("details").value = "";
-  
+
       // En iOS no se puede hacer una redirección posterior al abrir la app de mensajes
       if (isIOS) {
         // Redirige al SMS y el usuario debe volver manualmente al navegador
@@ -124,20 +149,3 @@ function sendSMS() {
       window.location.href = "/checkpages/error.html";
     });
 }
-
-window.addEventListener('DOMContentLoaded', () => {
-  // Obtener el parámetro 'client' de la URL actual
-  const urlParams = new URLSearchParams(window.location.search);
-  const client = urlParams.get('client');
-  
-  // Si 'client' existe, actualizar los enlaces de idioma
-  if (client) {
-    const langLinks = document.querySelectorAll('#lang-en, #lang-es'); // Selecciona los enlaces de idioma por id
-    
-    langLinks.forEach(link => {
-      const href = link.getAttribute('href');
-      // Añadir el parámetro client=cliente al enlace
-      link.setAttribute('href', href + (href.includes('?') ? '&' : '?') + 'client=' + client);
-    });
-  }
-});
