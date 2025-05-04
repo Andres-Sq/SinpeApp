@@ -14,6 +14,12 @@ window.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
   const client = urlParams.get("client");
 
+  if (!client) {
+    alert("Cliente no especificado en la URL");
+    window.location.href = "/error.html";
+    return;
+  }
+
   fetch(`https://sinpe-api-production.up.railway.app/api/config/${client}`)
     .then((res) => {
       if (!res.ok) throw new Error("Cliente no encontrado");
@@ -26,6 +32,7 @@ window.addEventListener("DOMContentLoaded", () => {
     .catch((err) => {
       console.error("Error al obtener configuración:", err);
       alert("No se pudo cargar la configuración del cliente.");
+      window.location.href = "/error.html";
     });
 });
 
