@@ -64,8 +64,7 @@ function sendSMS() {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log("Server response:", data);
-
+      console.log("Server response:", data);//log
       const smsMessage = data.message;
       const smsUrl = `sms:${phone_number}?&body=${encodeURIComponent(smsMessage)}`;
       window.location.href = smsUrl;
@@ -76,7 +75,7 @@ function sendSMS() {
       window.location.href = "/checkpages/success.html";
     })
     .catch((error) => {
-      console.error("Error:", error);
+      console.error("Error:", error);//log
       const alertMsg = isEnglish ? "There was an error sending the message." : "Se ha producido un error al enviar el mensaje.";
       alert(alertMsg);
       sessionStorage.setItem("sms_error", "true");
