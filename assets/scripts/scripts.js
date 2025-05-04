@@ -92,3 +92,20 @@ function sendSMS() {
       window.location.href = "/checkpages/error.html";
     });
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+  // Obtener el parámetro 'client' de la URL actual
+  const urlParams = new URLSearchParams(window.location.search);
+  const client = urlParams.get('client');
+  
+  // Si 'client' existe, actualizar los enlaces de idioma
+  if (client) {
+    const langLinks = document.querySelectorAll('#lang-en, #lang-es'); // Selecciona los enlaces de idioma por id
+    
+    langLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      // Añadir el parámetro client=cliente al enlace
+      link.setAttribute('href', href + (href.includes('?') ? '&' : '?') + 'client=' + client);
+    });
+  }
+});
