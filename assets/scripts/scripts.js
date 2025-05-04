@@ -16,7 +16,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   if (!client) {
     alert("Cliente no especificado en la URL");
-    window.location.href = "/error.html";
+    window.location.href = "/checkpages/error.html";
     return;
   }
 
@@ -32,7 +32,7 @@ window.addEventListener("DOMContentLoaded", () => {
     .catch((err) => {
       console.error("Error al obtener configuración:", err);
       alert("No se pudo cargar la configuración del cliente.");
-      window.location.href = "/error.html";
+      window.location.href = "/checkpages/error.html";
     });
 });
 
