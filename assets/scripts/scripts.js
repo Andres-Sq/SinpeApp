@@ -76,22 +76,45 @@ function sendSMS() {
     .then((response) => response.json())
     .then((data) => {
       const smsMessage = data.message;
-      const smsUrl = `sms:${phone_number}?&body=${encodeURIComponent(smsMessage)}`;
-      window.location.href = smsUrl;
-
-      const alertMsg = isEnglish ? "Message generated successfully." : "Mensaje generado con éxito.";
-      alert(alertMsg);
+      const smsUrl = `sms:${bank}?&body=${encodeURIComponent(smsMessage)}`;
+  
+      // Guardamos el estado en sessionStorage
       sessionStorage.setItem("sms_success", "true");
-      window.location.href = "/checkpages/success.html";
+  
+      const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+      const isAndroid = /Android/i.test(navigator.userAgent);
+  
+      const alertMsg = isEnglish
+        ? "Message generated successfully. You will now be redirected to your SMS app."
+        : "Mensaje generado con éxito. Ahora serás redirigido a tu app de mensajes.";
+      
+      alert(alertMsg);
+  
+      // En iOS no se puede hacer una redirección posterior al abrir la app de mensajes
+      if (isIOS) {
+        // Redirige al SMS y el usuario debe volver manualmente al navegador
+        window.location.href = smsUrl;
+        // No pongas nada después de esta línea
+      } else if (isAndroid) {
+        // En Android se puede usar setTimeout para redirigir después de abrir SMS
+        window.location.href = smsUrl;
+        setTimeout(() => {
+          window.location.href = "/checkpages/success.html";
+        }, 1500); // Da tiempo a que se abra la app de mensajes
+      } else {
+        // Por si se usa en navegador de escritorio u otro sistema
+        alert("This feature is intended for mobile devices.");
+      }
     })
     .catch((error) => {
       console.error("Error:", error);
-      const alertMsg = isEnglish ? "There was an error sending the message." : "Se ha producido un error al enviar el mensaje.";
+      const alertMsg = isEnglish
+        ? "There was an error sending the message."
+        : "Se ha producido un error al enviar el mensaje.";
       alert(alertMsg);
       sessionStorage.setItem("sms_error", "true");
       window.location.href = "/checkpages/error.html";
-    });
-}
+    });  
 
 window.addEventListener('DOMContentLoaded', () => {
   // Obtener el parámetro 'client' de la URL actual
