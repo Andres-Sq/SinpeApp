@@ -14,7 +14,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
   const client = urlParams.get("client");
 
-  if (!client) {
+  if (!client || client.trim() === "") {
     alert("Cliente no especificado en la URL");
     window.location.href = "/checkpages/error.html";
     return;
