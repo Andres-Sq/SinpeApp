@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SINPEQR</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -11,7 +11,6 @@
 
   <!-- LANGUAGE NAV -->
   <nav class="w-full p-4 bg-white shadow flex items-center justify-between">
-    <!-- Ícono + Texto a la izquierda -->
     <div class="flex items-center gap-2">
       <img src="../assets/images/Logo(blue).svg" alt="Logo" class="h-8 w-8"/>
       <span class="text-lg font-bold text-blue-600">SINPE App</span>
@@ -21,6 +20,7 @@
   <!-- MAIN -->
   <main class="bg-white p-6 rounded-2xl shadow-lg w-full max-w-sm mt-10">
     <img src="../assets/images/check.gif" alt="Success"/>
+    <p class="mt-4 text-center text-green-600 font-semibold">¡Mensaje generado con éxito!</p>
   </main>
 
   <!-- FOOTER -->
@@ -28,8 +28,17 @@
     <p>&copy; <span id="year"></span> ZharkaZ</p>
   </footer>
 
-  <!-- SCRIPTS -->
-  <script src="../assets/scripts/scripts.js" defer></script>
+  <!-- PROTECCIÓN DE ACCESO -->
+  <script>
+    const allowed = sessionStorage.getItem("sms_success");
+    if (!allowed) {
+      window.location.href = "/";
+    } else {
+      sessionStorage.removeItem("sms_success"); // Bloquea reingreso manual
+    }
 
+    // Año dinámico en el footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

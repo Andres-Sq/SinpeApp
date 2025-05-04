@@ -73,12 +73,14 @@ function sendSMS() {
 
       const alertMsg = isEnglish ? "Message generated successfully." : "Mensaje generado con éxito.";
       alert(alertMsg);
+      sessionStorage.setItem("sms_success", "true");
       window.location.href = "/checkpages/success.html";
     })
     .catch((error) => {
       console.error("Error:", error);
       const alertMsg = isEnglish ? "There was an error sending the message." : "Se ha producido un error al enviar el mensaje.";
       alert(alertMsg);
+      sessionStorage.setItem("sms_error", "true");
       window.location.href = "/checkpages/error.html";
     });
 }
