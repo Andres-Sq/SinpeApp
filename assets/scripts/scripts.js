@@ -27,7 +27,6 @@ window.addEventListener("DOMContentLoaded", () => {
     .then((data) => {
       config = data;
       document.getElementById("phone_number").value = data.phone;
-      document.getElementById("bank").value = data.bank;
     })
     .catch((err) => {
       console.error("Error al obtener configuración:", err);
