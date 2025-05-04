@@ -90,7 +90,7 @@ function sendSMS() {
       
       // Mostrar mensaje
       alert(alertMsg);
-      
+
       // Limpiar las casillas de texto después de enviar
       document.getElementById("amount").value = "";
       document.getElementById("details").value = "";
@@ -105,7 +105,7 @@ function sendSMS() {
         window.location.href = smsUrl;
         setTimeout(() => {
           window.location.href = "/checkpages/success.html";
-        }, 1500); // Da tiempo a que se abra la app de mensajes
+        }, 4000); // Da tiempo a que se abra la app de mensajes
       } else {
         // Por si se usa en navegador de escritorio u otro sistema
         alert("This feature is intended for mobile devices.");
