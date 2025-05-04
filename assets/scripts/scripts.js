@@ -130,7 +130,7 @@ function sendSMS() {
         // En Android se puede usar setTimeout para redirigir después de abrir SMS
         window.location.href = smsUrl;
         setTimeout(() => {
-        window.history.pushState({}, '', '/checkpages/success.html');
+        window.location.href = "/checkpages/success.html";
         }, 4000); // Da tiempo a que se abra la app de mensajes
       } else {
         // Por si se usa en navegador de escritorio u otro sistema
