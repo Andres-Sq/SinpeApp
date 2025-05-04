@@ -14,11 +14,6 @@ window.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
   const client = urlParams.get("client");
 
-  if (!client) {
-    alert("Cliente no especificado en la URL");
-    return;
-  }
-
   fetch(`https://sinpe-api-production.up.railway.app/api/config/${client}`)
     .then((res) => {
       if (!res.ok) throw new Error("Cliente no encontrado");
