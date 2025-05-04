@@ -88,7 +88,12 @@ function sendSMS() {
         ? "Message generated successfully. You will now be redirected to your SMS app."
         : "Mensaje generado con éxito. Ahora serás redirigido a tu app de mensajes.";
       
+      // Mostrar mensaje
       alert(alertMsg);
+      
+      // Limpiar las casillas de texto después de enviar
+      document.getElementById("amount").value = "";
+      document.getElementById("details").value = "";
   
       // En iOS no se puede hacer una redirección posterior al abrir la app de mensajes
       if (isIOS) {
