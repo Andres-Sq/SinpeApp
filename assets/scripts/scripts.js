@@ -1,20 +1,29 @@
-let config = {};
+// --- Año en el footer ---
+document.addEventListener("DOMContentLoaded", () => {
+  const yearSpan = document.getElementById("year");
+  if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
+  }
+});
 
+// --- Validación y formato de número SINPE ---
 window.addEventListener("DOMContentLoaded", () => {
   const numeroInput = document.getElementById("phone_number");
 
-  numeroInput.addEventListener("input", (e) => {
-    let valor = e.target.value.replace(/\D/g, "");
-    if (valor.length > 4) {
-      valor = valor.slice(0, 4) + "-" + valor.slice(4, 8);
-    }
-    e.target.value = valor;
-  });
+  if (numeroInput) {
+    numeroInput.addEventListener("input", (e) => {
+      let valor = e.target.value.replace(/\D/g, "");
+      if (valor.length > 4) {
+        valor = valor.slice(0, 4) + "-" + valor.slice(4, 8);
+      }
+      e.target.value = valor;
+    });
+  }
 
   const urlParams = new URLSearchParams(window.location.search);
   const client = urlParams.get("client");
 
-  if (!client || client.trim() === "") {
+  if (!client) {
     alert("Cliente no especificado en la URL");
     window.location.href = "/checkpages/error.html";
     return;
@@ -26,7 +35,6 @@ window.addEventListener("DOMContentLoaded", () => {
       return res.json();
     })
     .then((data) => {
-      config = data;
       document.getElementById("phone_number").value = data.phone;
     })
     .catch((err) => {
@@ -36,6 +44,7 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+// --- Función para enviar el SMS ---
 function sendSMS() {
   const isEnglish = window.location.pathname.includes("main_en");
 
@@ -66,7 +75,6 @@ function sendSMS() {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log("Server response:", data);//log
       const smsMessage = data.message;
       const smsUrl = `sms:${phone_number}?&body=${encodeURIComponent(smsMessage)}`;
       window.location.href = smsUrl;
@@ -77,7 +85,7 @@ function sendSMS() {
       window.location.href = "/checkpages/success.html";
     })
     .catch((error) => {
-      console.error("Error:", error);//log
+      console.error("Error:", error);
       const alertMsg = isEnglish ? "There was an error sending the message." : "Se ha producido un error al enviar el mensaje.";
       alert(alertMsg);
       sessionStorage.setItem("sms_error", "true");
