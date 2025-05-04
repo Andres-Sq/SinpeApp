@@ -91,12 +91,10 @@ function sendSMS() {
     details
   };
 
-  const sessionValue = sessionStorage.getItem("sms_success");
   fetch("https://sinpe-api-production.up.railway.app/api/sms/create-sms", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
-      "X-SMS-Success": sessionValue // Envías el valor del sessionStorage como header
+      "Content-Type": "application/json"
     },
     body: JSON.stringify(datos)
   })
@@ -115,8 +113,6 @@ function sendSMS() {
       // Mostrar mensaje
       alert(alertMsg);
 
-      sessionStorage.setItem("sms_success", "true");
-
       // Limpiar las casillas de texto después de enviar
       document.getElementById("amount").value = "";
       document.getElementById("details").value = "";
@@ -129,9 +125,6 @@ function sendSMS() {
       } else if (isAndroid) {
         // En Android se puede usar setTimeout para redirigir después de abrir SMS
         window.location.href = smsUrl;
-        setTimeout(() => {
-        window.location.href = "/checkpages/success.html";
-        }, 4000); // Da tiempo a que se abra la app de mensajes
       } else {
         // Por si se usa en navegador de escritorio u otro sistema
         alert("This feature is intended for mobile devices.");
@@ -143,7 +136,6 @@ function sendSMS() {
         ? "There was an error sending the message."
         : "Se ha producido un error al enviar el mensaje.";
       alert(alertMsg);
-      sessionStorage.setItem("sms_error", "true");
       window.location.href = "/checkpages/error.html";
     });
 }
