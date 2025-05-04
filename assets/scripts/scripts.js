@@ -66,10 +66,12 @@ function sendSMS() {
     details
   };
 
+  const sessionValue = sessionStorage.getItem("sms_success");
   fetch("https://sinpe-api-production.up.railway.app/api/sms/create-sms", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "X-SMS-Success": sessionValue // Envías el valor del sessionStorage como header
     },
     body: JSON.stringify(datos)
   })
@@ -77,9 +79,6 @@ function sendSMS() {
     .then((data) => {
       const smsMessage = data.message;
       const smsUrl = `sms:${bank}?&body=${encodeURIComponent(smsMessage)}`;
-  
-      // Guardamos el estado en sessionStorage
-      sessionStorage.setItem("sms_success", "true");
   
       const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
       const isAndroid = /Android/i.test(navigator.userAgent);
@@ -90,6 +89,10 @@ function sendSMS() {
       
       // Mostrar mensaje
       alert(alertMsg);
+
+      // Guardamos el estado en sessionStorage
+      document.cookie = "sms_success=true; path=/; max-age=60"; // dura 1 minuto
+      sessionStorage.setItem("sms_success", "true");
 
       // Limpiar las casillas de texto después de enviar
       document.getElementById("amount").value = "";
