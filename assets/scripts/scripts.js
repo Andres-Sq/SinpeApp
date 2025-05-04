@@ -22,7 +22,8 @@ function sendSMS() {
         details
     };
   
-    fetch("http://localhost:3000/api/sms/create-sms", {
+    //fetch("http://localhost:3000/api/sms/create-sms", {
+      fetch("https://sinpe-api-production.up.railway.app/api/sms/create-sms", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
