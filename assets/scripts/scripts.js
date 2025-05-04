@@ -114,7 +114,8 @@ function sendSMS() {
       alert(alertMsg);
       sessionStorage.setItem("sms_error", "true");
       window.location.href = "/checkpages/error.html";
-    });  
+    });
+}
 
 window.addEventListener('DOMContentLoaded', () => {
   // Obtener el parámetro 'client' de la URL actual
