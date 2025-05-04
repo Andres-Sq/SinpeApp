@@ -1,4 +1,4 @@
-export const onRequest = async ({ request, next }) => {
+const onRequest = async ({ request, next }) => {
   const url = new URL(request.url);
 
   // Permitir recursos estáticos sin client= (archivos en /assets/ y favicon.ico)

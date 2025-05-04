@@ -115,8 +115,6 @@ function sendSMS() {
       // Mostrar mensaje
       alert(alertMsg);
 
-      // Guardamos el estado en sessionStorage
-      document.cookie = "sms_success=true; path=/; max-age=60"; // dura 1 minuto
       sessionStorage.setItem("sms_success", "true");
 
       // Limpiar las casillas de texto después de enviar
@@ -132,7 +130,7 @@ function sendSMS() {
         // En Android se puede usar setTimeout para redirigir después de abrir SMS
         window.location.href = smsUrl;
         setTimeout(() => {
-          window.location.href = "/checkpages/success.html";
+        window.history.pushState({}, '', '/checkpages/success.html');
         }, 4000); // Da tiempo a que se abra la app de mensajes
       } else {
         // Por si se usa en navegador de escritorio u otro sistema
