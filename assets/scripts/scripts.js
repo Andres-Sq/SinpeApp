@@ -5,17 +5,13 @@ document.addEventListener("DOMContentLoaded", () => {
   updateLanguageLinks();
 });
 
-const API_URL = 'https://fetch.sequeira-andresdev.workers.dev';  // Accede al Worker vinculado
-
-// --- Función para mostrar el año actual en el footer ---
+const API_URL = 'https://fetch.sequeira-andresdev.workers.dev';
 function setYearInFooter() {
   const yearSpan = document.getElementById("year");
   if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
   }
 }
-
-// --- Formateo en vivo del número SINPE ---
 function formatPhoneInput() {
   const numeroInput = document.getElementById("phone_number");
 
@@ -29,8 +25,6 @@ function formatPhoneInput() {
     });
   }
 }
-
-// --- Verificar 'client' y cargar configuración del API ---
 function validateAndLoadClient() {
   const urlParams = new URLSearchParams(window.location.search);
   const client = urlParams.get("client");
@@ -56,8 +50,6 @@ function validateAndLoadClient() {
       window.location.href = "/checkpages/error.html";
     });
 }
-
-// --- Actualizar enlaces de idioma con ?client ---
 function updateLanguageLinks() {
   const urlParams = new URLSearchParams(window.location.search);
   const client = urlParams.get("client");
@@ -70,8 +62,6 @@ function updateLanguageLinks() {
     });
   }
 }
-
-// --- Función para enviar el SMS ---
 function sendSMS() {
   const isEnglish = window.location.pathname.includes("main_en");
 
@@ -112,23 +102,16 @@ function sendSMS() {
         ? "Message generated successfully. You will now be redirected to your SMS app."
         : "Mensaje generado con éxito. Ahora serás redirigido a tu app de mensajes.";
       
-      // Mostrar mensaje
       alert(alertMsg);
 
-      // Limpiar las casillas de texto después de enviar
       document.getElementById("amount").value = "";
       document.getElementById("details").value = "";
 
-      // En iOS no se puede hacer una redirección posterior al abrir la app de mensajes
       if (isIOS) {
-        // Redirige al SMS y el usuario debe volver manualmente al navegador
         window.location.href = smsUrl;
-        // No pongas nada después de esta línea
       } else if (isAndroid) {
-        // En Android se puede usar setTimeout para redirigir después de abrir SMS
         window.location.href = smsUrl;
       } else {
-        // Por si se usa en navegador de escritorio u otro sistema
         alert("This feature is intended for mobile devices.");
       }
     })
