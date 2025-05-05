@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Definir la URL base desde la variable de entorno
-window.API_URL = '{{API_URL}}';
 const API_URL = window.API_URL;
 
 // --- Función para mostrar el año actual en el footer ---
