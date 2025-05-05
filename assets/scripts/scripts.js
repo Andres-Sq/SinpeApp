@@ -5,8 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   updateLanguageLinks();
 });
 
-// Definir la URL base desde la variable de entorno
-const API_URL = window.API_URL;
+const API_URL = 'https://fetch.sequeira-andresdev.workers.dev';  // Accede al Worker vinculado
 
 // --- Función para mostrar el año actual en el footer ---
 function setYearInFooter() {
