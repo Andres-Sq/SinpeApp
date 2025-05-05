@@ -5,6 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
   updateLanguageLinks();
 });
 
+// Definir la URL base desde la variable de entorno
+const API_URL = import.meta.env.VITE_API_URL;
+
 // --- Función para mostrar el año actual en el footer ---
 function setYearInFooter() {
   const yearSpan = document.getElementById("year");
@@ -39,7 +42,7 @@ function validateAndLoadClient() {
     return;
   }
 
-  fetch(`https://sinpe-api-production.up.railway.app/api/config/${client}`)
+  fetch(`${API_URL}/api/config/${client}`)
     .then((res) => {
       if (!res.ok) throw new Error("Cliente no encontrado");
       return res.json();
@@ -91,7 +94,7 @@ function sendSMS() {
     details
   };
 
-  fetch("https://sinpe-api-production.up.railway.app/api/sms/create-sms", {
+  fetch(`${API_URL}/api/sms/create-sms`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
