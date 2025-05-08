@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SINPEQR</title>
+  <title>SINPEQR - Error</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -16,15 +16,36 @@
     </div>
   </nav>
 
+<<<<<<< HEAD
   <main class="bg-white p-6 rounded-2xl shadow-lg w-full max-w-sm mt-10">
     <img src="../assets/images/error.gif" alt="Success"/>
+=======
+  <!-- MAIN -->
+  <main class="bg-white p-6 rounded-2xl shadow-lg w-full max-w-sm mt-10 text-center">
+    <img src="../assets/images/error.gif" alt="Error"/>
+    <p class="mt-4 text-red-600 font-semibold">Ocurrió un error al generar el mensaje.</p>
+    <a href="/" class="mt-4 inline-block text-blue-600 hover:underline">Volver al inicio</a>
+>>>>>>> tokenApi
   </main>
 
   <footer class="mt-8 text-gray-600 text-sm text-center">
     <p>&copy; <span id="year"></span> ZharkaZ</p>
   </footer>
 
+<<<<<<< HEAD
   <script src="../assets/scripts/script.min.js" defer></script>
+=======
+  <!-- PROTECCIÓN -->
+  <script>
+    const allowed = sessionStorage.getItem("sms_error");
+    if (!allowed) {
+      window.location.href = "/";
+    } else {
+      sessionStorage.removeItem("sms_error");
+    }
+>>>>>>> tokenApi
 
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

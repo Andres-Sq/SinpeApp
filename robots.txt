@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*?
+Allow: /
+
+Sitemap: https://sinpeapp.pages.dev/sitemap.xml

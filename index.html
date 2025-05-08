@@ -1,1 +1,71 @@
+<<<<<<< HEAD
 <!doctype html><html lang=es><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Realiza pagos rápidos y seguros con SINPE Móvil a través de SINPEQR. Compatible con los principales bancos de Costa Rica."><title>SINPEQR Costa Rica</title><script src=https://cdn.tailwindcss.com></script></head><body class="flex items-center bg-gray-100 flex-col justify-center min-h-screen"><nav class="w-full bg-white flex items-center justify-between p-4 shadow"><div class="flex items-center gap-2"><img src=assets/images/Logo(blue).svg alt="Logo Zharkaz" class="h-8 w-8"> <span class="font-bold text-blue-600 text-lg">SINPE App</span></div><ul class="flex gap-2"><li><a href=main_es.html class="font-bold bg-blue-500 px-4 py-1 rounded-full shadow-md text-white">Español</a></li><li><a href=main_en.html class="border border-blue-500 duration-200 hover:bg-blue-500 hover:text-white px-4 py-1 rounded-full text-blue-500 transition">English</a></li></ul></nav><main class="w-full bg-white max-w-sm mt-10 p-6 rounded-2xl shadow-lg"><h2 class="font-bold mb-4 text-2xl text-center text-gray-800">Pago por SINPE Móvil</h2><label for=bank class="text-sm block font-medium mb-2 text-gray-700">Seleccione su banco</label> <select id=bank class="w-full rounded-xl border focus:outline-none focus:ring-2 focus:ring-blue-400 p-2 mb-4"><option value=2627>BN (Banco Nacional)</option><option value=4066>BCR (Banco de Costa Rica)</option><option value=2627>Banco Popular</option><option value=707001222>BAC</option><option value=60575079>Mutual Alajuela</option><option value=2627>Coopenae</option><option value=62229525>Mucap</option><option value=70701222>Davivienda</option><option value=62232450>Promerica</option></select> <label class="text-sm block font-medium mb-2 text-gray-700">Numero SINPE</label> <input type=tel id=phone_number maxlength=9 placeholder=8888-8888 value="8402-2447" readonly class="w-full rounded-xl border focus:outline-none focus:ring-2 focus:ring-blue-400 p-2 mb-4"> <label class="text-sm block font-medium mb-2 text-gray-700">Monto</label> <input type=number id=amount placeholder=₡5000 class="w-full rounded-xl border focus:outline-none focus:ring-2 focus:ring-blue-400 p-2 mb-4"> <label class="text-sm block font-medium mb-2 text-gray-700">Detalles de pago</label> <input id=details placeholder=Cena/Almuerzo/Pizza/Pago class="w-full rounded-xl border focus:outline-none focus:ring-2 focus:ring-blue-400 p-2 mb-6"> <button onclick=createSMS() class="w-full rounded-xl bg-blue-500 duration-200 font-semibold hover:bg-blue-600 py-2 text-white transition">Enviar SMS</button></main><footer class="text-sm mt-8 text-center text-gray-600"><p>&copy; <span id=year></span> ZharkaZ</p></footer><script src=assets/scripts/script.min.js defer=defer></script></body></html>
+=======
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>SINPEQR</title>
+  <script src="https://cdn.tailwindcss.com"></script> <!-- Tailwind CDN -->
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
+  <nav class="w-full p-4 bg-white shadow flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <img src="assets/images/Logo(blue).svg" alt="Logo" class="h-8 w-8"/>
+      <span class="text-lg font-bold text-cyan-500">SINPEQR</span>
+    </div>
+    <ul class="flex gap-2">
+      <li>
+        <a id="lang-es" href="index.html" class="px-4 py-1 rounded-full bg-cyan-500 text-white font-bold shadow-md">
+          Español
+        </a>
+      </li>
+      <li>
+        <a id="lang-en" href="main_en.html" class="px-4 py-1 rounded-full border border-cyan-500 text-cyan-500 hover:bg-cyan-500 hover:text-white transition duration-200">
+          English
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <main class="bg-white p-6 rounded-2xl shadow-lg w-full max-w-sm mt-10">
+    <img src="assets/images/Logo(blue).svg" alt="Logo" class="h-24 w-auto mx-auto mb-4" />
+    <h2 class="text-2xl font-bold mb-4 text-center text-gray-800">Pago por SINPE Móvil</h2>
+
+    <label for="bank" class="block mb-2 text-sm font-medium text-gray-700">Seleccione su banco</label>
+    <select id="bank" class="w-full p-2 mb-4 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400">
+        <option> </option>   
+        <option value="2627">BN (Banco Nacional)</option>
+        <option value="4066">BCR (Banco de Costa Rica)</option>
+        <option value="2627">Banco Popular</option>
+        <option value="70701222">BAC</option>
+        <option value="60575079">Mutual Alajuela</option>
+        <option value="2627">Coopenae</option>
+        <option value="62229525">Mucap</option>
+        <option value="70701222">Davivienda</option>
+        <option value="62232450">Promerica</option>
+    </select>
+
+    <label class="block mb-2 text-sm font-medium text-gray-700">Numero SINPE</label>
+    <input type="tel" id="phone_number" maxlength="9" placeholder="8888-8888" readonly="true" class="w-full p-2 mb-4 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"/>
+
+    <label class="block mb-2 text-sm font-medium text-gray-700">Monto</label>
+    <input type="number" id="amount" placeholder="₡5000" class="w-full p-2 mb-4 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"/>
+
+    <label class="block mb-2 text-sm font-medium text-gray-700">Detalles de pago</label>
+    <input type="text" id="details" placeholder="Cena/Almuerzo/Pizza/Pago" class="w-full p-2 mb-6 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"/>
+
+    <button onclick="sendSMS()" class="w-full bg-cyan-500 text-white py-2 rounded-xl font-semibold hover:bg-cyan-500 transition duration-200">
+      Enviar SMS
+    </button>
+  </main>
+  <footer class="mt-8 text-gray-600 text-sm text-center">
+    <p>&copy; <span id="year"></span> ZharkaZ</p>
+  </footer>
+  <script src="assets/scripts/scripts.js" defer></script>
+
+</body>
+</html>
+>>>>>>> tokenApi

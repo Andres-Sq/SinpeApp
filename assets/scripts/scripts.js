@@ -1,0 +1,126 @@
+document.addEventListener("DOMContentLoaded", () => {
+  setYearInFooter();
+  formatPhoneInput();
+  validateAndLoadClient();
+  updateLanguageLinks();
+});
+
+const API_URL = 'https://fetch.sequeira-andresdev.workers.dev';
+function setYearInFooter() {
+  const yearSpan = document.getElementById("year");
+  if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
+  }
+}
+function formatPhoneInput() {
+  const numeroInput = document.getElementById("phone_number");
+
+  if (numeroInput) {
+    numeroInput.addEventListener("input", (e) => {
+      let valor = e.target.value.replace(/\D/g, "");
+      if (valor.length > 4) {
+        valor = valor.slice(0, 4) + "-" + valor.slice(4, 8);
+      }
+      e.target.value = valor;
+    });
+  }
+}
+function validateAndLoadClient() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const client = urlParams.get("client");
+
+  if (!client) {
+    alert("Cliente no especificado en la URL");
+    window.location.href = "/checkpages/error.html";
+    return;
+  }
+
+  fetch(`${API_URL}/api/config/${client}`)
+    .then((res) => {
+      if (!res.ok) throw new Error("Cliente no encontrado");
+      return res.json();
+    })
+    .then((data) => {
+      const phoneInput = document.getElementById("phone_number");
+      if (phoneInput) phoneInput.value = data.phone;
+    })
+    .catch((err) => {
+      console.error("Error al obtener configuración:", err);
+      alert("No se pudo cargar la configuración del cliente.");
+      window.location.href = "/checkpages/error.html";
+    });
+}
+function updateLanguageLinks() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const client = urlParams.get("client");
+
+  if (client) {
+    const langLinks = document.querySelectorAll('#lang-en, #lang-es');
+    langLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      link.setAttribute('href', href + (href.includes('?') ? '&' : '?') + 'client=' + client);
+    });
+  }
+}
+function sendSMS() {
+  const isEnglish = window.location.pathname.includes("main_en");
+
+  const amount = document.getElementById("amount").value.trim();
+  const details = document.getElementById("details").value.trim();
+  const phone_number = document.getElementById("phone_number").value.replace(/-/g, "");
+  const bank = document.getElementById("bank").value;
+
+  if (!bank || !phone_number || !amount || !details) {
+    const alertMsg = isEnglish ? "Please complete all fields." : "Por favor completa todos los campos.";
+    alert(alertMsg);
+    return;
+  }
+
+  const datos = {
+    bank,
+    phone_number,
+    amount,
+    details
+  };
+
+  fetch(`${API_URL}/api/sms/create-sms`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(datos)
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const smsMessage = data.message;
+      const smsUrl = `sms:${bank}?&body=${encodeURIComponent(smsMessage)}`;
+
+      const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+      const isAndroid = /Android/i.test(navigator.userAgent);
+
+      const alertMsg = isEnglish
+        ? "Message generated successfully. You will now be redirected to your SMS app."
+        : "Mensaje generado con éxito. Ahora serás redirigido a tu app de mensajes.";
+      
+      alert(alertMsg);
+
+      document.getElementById("amount").value = "";
+      document.getElementById("details").value = "";
+
+      if (isIOS) {
+        window.location.href = smsUrl;
+      } else if (isAndroid) {
+        window.location.href = smsUrl;
+      } else {
+        alert("This feature is intended for mobile devices.");
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      const alertMsg = isEnglish
+        ? "There was an error sending the message."
+        : "Se ha producido un error al enviar el mensaje.";
+      alert(alertMsg);
+      window.location.href = "/checkpages/error.html";
+    });
+}
